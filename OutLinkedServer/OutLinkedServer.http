@@ -1,6 +1,0 @@
-@OutLinkedServer_HostAddress = http://localhost:5084
-
-GET {{OutLinkedServer_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

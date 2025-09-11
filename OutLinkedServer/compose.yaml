@@ -1,0 +1,7 @@
+﻿services:
+  outlinkedserver:
+    image: outlinkedserver
+    build:
+      context: .
+      dockerfile: OutLinkedServer/Dockerfile
+
