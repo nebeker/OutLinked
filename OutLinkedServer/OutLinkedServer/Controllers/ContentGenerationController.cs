@@ -22,15 +22,13 @@ public class ContentGenerationController : ControllerBase
     {
         return "model";
     }
-
-    public record ContentRequest
-    {
-        public string Text  { get; set; }
-    }
     
     [HttpPost(Name = "GenerateFromText")]
-    public async Task<string> Post([FromBody] ContentRequest request)
+    public async Task<IActionResult> Post([FromBody] ContentRequestDto request)
     {
-        return await _chatter.AnswerChatAsync(request.Text);
+        if (request is { PlugEnabled: true, PlugOptions: null })
+            return new BadRequestObjectResult("Plug options are required");
+        var result = await _chatter.GenerateContent(request);
+        return  new OkObjectResult(result);
     }
 }

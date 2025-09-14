@@ -7,6 +7,7 @@ public class Chatter : IChatter
     private readonly IChatClient chatClient;
     
     private readonly string defaultSystemPrompt = "write an insightful professional social media post reply in 20 words or less";
+    private readonly string systemPromptTemplate = "write an insightful professional social media post reply in 20 words or less";
     
     List<ChatMessage> chatHistory = new();
 
@@ -29,5 +30,14 @@ public class Chatter : IChatter
         }
         
         return assistantResponse;
+    }
+
+    public async Task<string> GenerateContent(ContentRequestDto request)
+    {
+        var prompt = request.Post;
+        var systemPrompt = defaultSystemPrompt
+                           + "";
+
+        return await AnswerChatAsync(prompt, systemPrompt);
     }
 }
