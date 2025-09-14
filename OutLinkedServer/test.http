@@ -1,0 +1,15 @@
+GET http://localhost:5098/openapi/v1.json HTTP/1.1
+
+
+###
+
+POST http://localhost:5098/ContentGeneration HTTP/1.1
+content-type: application/json
+
+{
+    "Post":"Marketing is a way of life!",
+    "Type":1,
+    "AuthorIndustry":"marketing",
+    "AuthorTitle":"head of marketing",
+    "PlugEnabled":false
+}
