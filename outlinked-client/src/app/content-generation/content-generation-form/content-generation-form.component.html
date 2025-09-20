@@ -1,0 +1,62 @@
+<form [formGroup]="contentRequestForm" (ngSubmit)="onSubmit()">
+  <mat-card class="request-card">
+    <mat-card-header>
+      <mat-card-title>Generate content</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Original post</mat-label>
+            <input matInput placeholder="The five most important thing I learned about marketing while drifting through the Pacific ocean..." formControlName="post">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+                        <mat-label>Content type to generate</mat-label>
+            <mat-select placeholder="Post/Reply" formControlName="contentType">
+              @for (contentType of contentTypes; track contentType) {
+                <mat-option [value]="contentType.value">{{ contentType.name }}</mat-option>
+              }
+            </mat-select>
+            @if (contentRequestForm.controls['contentType'].hasError('required')) {
+              <mat-error>Content type is <strong>required</strong></mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button matButton type="button" (click)="plugEnabled = !plugEnabled">
+            @if (!plugEnabled) {
+              Plug my content
+            }
+            @else
+            {
+              Don't plug my content
+            }
+          </button>
+          @if (plugEnabled) {
+            <mat-form-field class="full-width">
+              <mat-label>Plug content title</mat-label>
+              <input type="text" matInput placeholder="Daily marketing blast" formControlName="plugTitle">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                            <mat-label>Plug content type</mat-label>
+              <input type="text" matInput placeholder="newsletter" formControlName="plugType">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                            <mat-label>Plug content URL</mat-label>
+              <input type="text" matInput placeholder="https://daily.marketing-blast.example.com" formControlName="plugUrl">
+            </mat-form-field>
+          }
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button matButton="elevated" color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
