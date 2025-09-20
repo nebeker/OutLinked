@@ -1,26 +1,9 @@
-<form #contentForm="ngForm" (ngSubmit)="onGenerateSubmit(contentForm)">
-    <label>
-        Original content
-        <textarea ngModel name="post" required=""></textarea>
-    </label>
-    <label>
-        Your content type
-        <select ngModel name="type" required>
-            <option value="2">Quote post</option>
-            <option value="1">Reply</option>
-        </select>
-    </label>
-    <label>
-        Plug content
-        <input type="checkbox" ngModel name="plugEnabled">
-    </label>
-    @if (request.PlugEnabled) {
-        <p>plug options here</p>
-    }
-    <button type="submit" [disabled]="contentForm.invalid">Generate content</button>
-</form>
+<app-content-generation-form></app-content-generation-form>
 
-<h2>Your reply</h2>
 @if (reply) {
-<p>{{reply}}</p>
+<h2>Your reply</h2>
+<p>{{ reply }}</p>
+} @if (quotePost) {
+<h2>Your Post</h2>
+<p>{{ quotePost }}</p>
 }

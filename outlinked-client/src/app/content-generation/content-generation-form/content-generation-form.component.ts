@@ -6,7 +6,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
-
 import {
   IContentRequest,
   ContentType,
@@ -14,6 +13,7 @@ import {
 } from '../models/content-request-model';
 import { UserInfoService } from '../../user-info/user-info-service';
 import { IUserInfo } from '../../user-info/models/user-info-model';
+import { ContentGenerationService } from '../content-generation-service';
 
 @Component({
   selector: 'app-content-generation-form',
@@ -30,6 +30,7 @@ import { IUserInfo } from '../../user-info/models/user-info-model';
 })
 export class ContentGenerationFormComponent {
   private userInfoService = inject(UserInfoService);
+  private generationService = inject(ContentGenerationService);
   private fb = inject(FormBuilder);
   contentRequestForm = this.fb.group({
     post: ['', Validators.required],
@@ -62,6 +63,8 @@ export class ContentGenerationFormComponent {
 
   userInfo: IUserInfo | undefined;
 
+  generatedContent: string[] = [];
+
   ngOnInit() {
     var savedPlugOptions = this.userInfoService.getPromotionOptions();
     if (savedPlugOptions) this.plugOptions = savedPlugOptions;
@@ -84,5 +87,12 @@ export class ContentGenerationFormComponent {
     };
 
     console.log(this.request);
+
+    var result = this.generationService
+      .generateContent(this.request)
+      .subscribe((data) => {
+        this.generatedContent.push(data);
+        console.log(data);
+      });
   }
 }
