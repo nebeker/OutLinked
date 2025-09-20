@@ -1,45 +1,14 @@
 <h1>OutLinked</h1>
 
-<form>
-  <label>
-    Original content
-    <textarea required></textarea>
-  </label>
-  <label>
-    Your content type
-    <select required>
-      <option>Quote post</option>
-      <option>Reply</option>
-    </select>
-  </label>
-  <label>
-    Industry
-    <input type="text" placeholder="marketing">
-  </label>
-  <label>
-    Job title
-    <input type="text" placeholder="Marketing director">
-  </label>
-  <label>
-    Plug content
-    <input type="checkbox" required>
-  </label>
-  <fieldset>
-    <label>
-      Content type
-      <input type="text" placeholder="newsletter" required>
-    </label>
-    <label>
-      Title
-      <input type="text" placeholder="My News" required>
-    </label>
-    <label>
-      URL
-      <input type="text" placeholder="mynewletter.com" required>
-    </label>
-  </fieldset>
-    <button type="button">Generate content</button>
-</form>
+<nav>
+<ul>
+  <li>
+    <a routerLink="/">Content Generation</a>
+  </li>
+  <li>
+    <a routerLink="/user-info">User Info</a>
+  </li>
+</ul>
+</nav>
 
-<h2>Your reply</h2>
-<p>jfsdjfds fdsjfl;ds foidsfj sd; f;dsa fj</p>
+<router-outlet />
