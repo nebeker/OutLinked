@@ -1,7 +1,9 @@
+<H1>Content Generation</H1>
+
 <form [formGroup]="contentRequestForm" (ngSubmit)="onSubmit()">
   <mat-card class="request-card">
     <mat-card-header>
-      <mat-card-title>Generate content</mat-card-title>
+      <mat-card-title>Content generation options</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div class="row">
@@ -56,7 +58,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button matButton="elevated" color="primary" type="submit">Submit</button>
+      <button matButton="elevated" color="primary" type="submit">Generate</button>
     </mat-card-actions>
   </mat-card>
 </form>
