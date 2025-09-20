@@ -18,6 +18,7 @@ import { RouterOutlet,RouterLink } from '@angular/router';
     MatListModule,
     MatIconModule,
     AsyncPipe,
+    RouterLink,
     RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
