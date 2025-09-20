@@ -5,19 +5,15 @@
   </mat-card-header>
   <mat-card-content>
     <div class="row">
+      <div class="col option-title">Author Title</div>
       <div class="col">
-        <p>Author Title:</p>
-      </div>
-      <div class="col">
-        <p>{{ userInfo.AuthorTitle }}</p>
+        {{ userInfo.AuthorTitle }}
       </div>
     </div>
     <div class="row">
+      <div class="col option-title">Author Industry</div>
       <div class="col">
-        <p>Author Industry:</p>
-      </div>
-      <div class="col">
-        <p>{{ userInfo.AuthorIndustry }}</p>
+        {{ userInfo.AuthorIndustry }}
       </div>
     </div>
   </mat-card-content>
@@ -40,7 +36,7 @@
     <mat-card-content>
       <div class="row">
         <div class="col">
-          <mat-form-field class="full-width">
+          <mat-form-field>
             <mat-label>User title</mat-label>
             <input
               matInput
@@ -54,7 +50,7 @@
 
       <div class="row">
         <div class="col">
-          <mat-form-field class="full-width">
+          <mat-form-field>
             <mat-label>User industry</mat-label>
             <input
               matInput

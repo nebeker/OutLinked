@@ -5,27 +5,21 @@
   </mat-card-header>
   <mat-card-content>
     <div class="row">
+      <div class="col option-title">Title</div>
       <div class="col">
-        <p>Title:</p>
-      </div>
-      <div class="col">
-        <p>{{ promotionOptions.Title }}</p>
+        {{ promotionOptions.Title }}
       </div>
     </div>
     <div class="row">
+      <div class="col option-title">Type</div>
       <div class="col">
-        <p>Type:</p>
-      </div>
-      <div class="col">
-        <p>{{ promotionOptions.Type }}</p>
+        {{ promotionOptions.Type }}
       </div>
     </div>
     <div class="row">
+      <div class="col option">Address</div>
       <div class="col">
-        <p>Address:</p>
-      </div>
-      <div class="col">
-        <p>{{ promotionOptions.Url }}</p>
+        {{ promotionOptions.Url }}
       </div>
     </div>
   </mat-card-content>
@@ -52,7 +46,7 @@
     <mat-card-content>
       <div class="row">
         <div class="col">
-          <mat-form-field class="full-width">
+          <mat-form-field>
             <mat-label>Plug content title</mat-label>
             <input
               type="text"
@@ -65,7 +59,7 @@
       </div>
       <div class="row">
         <div class="col">
-          <mat-form-field class="full-width">
+          <mat-form-field>
             <mat-label>Plug content type</mat-label>
             <input
               type="text"
@@ -78,7 +72,7 @@
       </div>
       <div class="row">
         <div class="col">
-          <mat-form-field class="full-width">
+          <mat-form-field>
             <mat-label>Plug content URL</mat-label>
             <input
               type="text"

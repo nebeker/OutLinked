@@ -21,7 +21,7 @@
       </div>
       <div class="row">
         <div class="col">
-          <mat-form-field class="full-width">
+          <mat-form-field>
             <mat-label>Content type to generate</mat-label>
             <mat-select
               placeholder="Post/Reply"
@@ -48,7 +48,7 @@
             }
           </button>
           @if (plugEnabled) {
-          <mat-form-field class="full-width">
+          <mat-form-field>
             <mat-label>Plug content title</mat-label>
             <input
               type="text"
@@ -58,7 +58,7 @@
               [(ngModel)]="plugOptions.Title"
             />
           </mat-form-field>
-          <mat-form-field class="full-width">
+          <mat-form-field>
             <mat-label>Plug content type</mat-label>
             <input
               type="text"
@@ -68,7 +68,7 @@
               [(ngModel)]="plugOptions.Type"
             />
           </mat-form-field>
-          <mat-form-field class="full-width">
+          <mat-form-field>
             <mat-label>Plug content URL</mat-label>
             <input
               type="text"
