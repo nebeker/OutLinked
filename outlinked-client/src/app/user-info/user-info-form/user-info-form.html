@@ -1,0 +1,74 @@
+@if(userInfo && !editingUser) {
+<mat-card class="user-info-card">
+  <mat-card-header>
+    <mat-card-title>User details for generated content</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="row">
+      <div class="col">
+        <p>Author Title:</p>
+      </div>
+      <div class="col">
+        <p>{{ userInfo.AuthorTitle }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p>Author Industry:</p>
+      </div>
+      <div class="col">
+        <p>{{ userInfo.AuthorIndustry }}</p>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="row">
+      <div class="col">
+        <button matButton type="button" (click)="editingUser = !editingUser">
+          Edit
+        </button>
+      </div>
+    </div>
+  </mat-card-actions>
+</mat-card>
+} @if(!userInfo || editingUser) {
+<form [formGroup]="userInfoForm" (ngSubmit)="onUserSubmit()">
+  <mat-card class="user-info-card">
+    <mat-card-header>
+      <mat-card-title>User details for generated content</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>User title</mat-label>
+            <input
+              matInput
+              placeholder="Head of marketing"
+              formControlName="authorTitle"
+              value="{{ userInfo?.AuthorTitle }}"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>User industry</mat-label>
+            <input
+              matInput
+              placeholder="marketing"
+              formControlName="authorIndustry"
+              value="{{ userInfo?.AuthorIndustry }}"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button matButton="elevated" color="primary" type="submit">Save</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+}

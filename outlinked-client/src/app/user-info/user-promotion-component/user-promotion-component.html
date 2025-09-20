@@ -1,1 +1,98 @@
-<p>user-promotion-component works!</p>
+@if(promotionOptions && !editingPromotion) {
+<mat-card class="promotion-card">
+  <mat-card-header>
+    <mat-card-title>Content to promote on generated content</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="row">
+      <div class="col">
+        <p>Title:</p>
+      </div>
+      <div class="col">
+        <p>{{ promotionOptions.Title }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p>Type:</p>
+      </div>
+      <div class="col">
+        <p>{{ promotionOptions.Type }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p>Address:</p>
+      </div>
+      <div class="col">
+        <p>{{ promotionOptions.Url }}</p>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="row">
+      <div class="col">
+        <button
+          matButton
+          type="button"
+          (click)="editingPromotion = !editingPromotion"
+        >
+          Edit
+        </button>
+      </div>
+    </div>
+  </mat-card-actions>
+</mat-card>
+} @if(!promotionOptions || editingPromotion) {
+<form [formGroup]="promotionForm" (ngSubmit)="onPromotionSubmit()">
+  <mat-card class="promotion-card">
+    <mat-card-header>
+      <mat-card-title>User details for generated content</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Plug content title</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="Daily marketing blast"
+              formControlName="plugTitle"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Plug content type</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="newsletter"
+              formControlName="plugType"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Plug content URL</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="https://daily.marketing-blast.example.com"
+              formControlName="plugUrl"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button matButton="elevated" color="primary" type="submit">Save</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+}
