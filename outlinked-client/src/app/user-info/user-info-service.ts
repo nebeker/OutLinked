@@ -6,10 +6,7 @@ import { IUserPromotionOptions } from './models/user-promotion-options-model';
   providedIn: 'root',
 })
 export class UserInfoService {
-  private userInfo: IUserInfo | undefined = {
-    AuthorIndustry: 'marketing and shit',
-    AuthorTitle: 'chief bullshitter',
-  };
+  private userInfo: IUserInfo | undefined;
   private promotionOptions: IUserPromotionOptions | undefined;
 
   public setUserInfo(info: IUserInfo) {
