@@ -11,7 +11,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 export class ContentGenerationComponent {
   request: IContentRequest = {
   Post: "",
-  Type: ContentType.Post,
+  Type: 1,
   AuthorIndustry: "",
   AuthorTitle: "",
   PlugEnabled: false,
@@ -23,8 +23,11 @@ Title:"",
 Url:""
   };
 
-  contentForm:NgForm
   reply: string | undefined;
   quotePost: string | undefined;
 
+  onGenerateSubmit(contentForm: NgForm)
+  {
+    console.log(contentForm.value)
+  }
 }

@@ -1,31 +1,23 @@
-<form #ngFrom="contentForm">
+<form #contentForm="ngForm" (ngSubmit)="onGenerateSubmit(contentForm)">
     <label>
         Original content
-        <textarea [(ngModel)]="request.Post" required></textarea>
+        <textarea ngModel name="post" required=""></textarea>
     </label>
     <label>
         Your content type
-        <select [(ngModel)]="request.Type" required="">
+        <select ngModel name="type" required>
             <option value="2">Quote post</option>
-            <option value="">Reply</option>
+            <option value="1">Reply</option>
         </select>
     </label>
     <label>
-        Industry
-        <input type="text" placeholder="marketing">
-    </label>
-    <label>
-        Job title
-        <input type="text" placeholder="Marketing director">
-    </label>
-    <label>
         Plug content
-        <input type="checkbox" required [(ngModel)]="request.PlugEnabled">
+        <input type="checkbox" ngModel name="plugEnabled">
     </label>
     @if (request.PlugEnabled) {
         <p>plug options here</p>
     }
-    <button type="submit">Generate content</button>
+    <button type="submit" [disabled]="contentForm.invalid">Generate content</button>
 </form>
 
 <h2>Your reply</h2>
