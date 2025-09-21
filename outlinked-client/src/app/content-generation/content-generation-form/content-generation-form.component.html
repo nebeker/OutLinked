@@ -47,7 +47,11 @@
             @if (!plugEnabled) { Plug my content } @else { Don't plug my content
             }
           </button>
-          @if (plugEnabled) {
+        </div>
+      </div>
+      @if (plugEnabled) {
+      <div class="row">
+        <div class="col">
           <mat-form-field>
             <mat-label>Plug content title</mat-label>
             <input
@@ -58,6 +62,8 @@
               [(ngModel)]="plugOptions.Title"
             />
           </mat-form-field>
+        </div>
+        <div class="col">
           <mat-form-field>
             <mat-label>Plug content type</mat-label>
             <input
@@ -68,6 +74,8 @@
               [(ngModel)]="plugOptions.Type"
             />
           </mat-form-field>
+        </div>
+        <div class="col">
           <mat-form-field>
             <mat-label>Plug content URL</mat-label>
             <input
@@ -78,9 +86,9 @@
               [(ngModel)]="plugOptions.Url"
             />
           </mat-form-field>
-          }
         </div>
       </div>
+      }
     </mat-card-content>
     <mat-card-actions>
       <button matButton="elevated" color="primary" type="submit">
