@@ -1,4 +1,5 @@
 using System.Text;
+using ContentGeneration.Domain;
 using static System.String;
 using static ContentGeneration.PromptSegments;
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.AI;
+﻿using ContentGeneration.Domain;
+using Microsoft.Extensions.AI;
 
 namespace ContentGeneration;
 
@@ -32,11 +33,15 @@ public class Chatter : IChatter
         return assistantResponse;
     }
 
-    public async Task<string> GenerateContent(ContentRequestDto request)
+    public async Task<ContentResponseDto> GenerateContent(ContentRequestDto request)
     {
         var prompt = request.Post;
         var systemPrompt = _systemPromptBuilder.BuildSystemPrompt(request);
-
-        return await AnswerChatAsync(prompt, systemPrompt);
+        var content = await AnswerChatAsync(prompt, systemPrompt);
+        return new ContentResponseDto
+        {
+            ContentType = request.Type,
+            GeneratedContent = content,
+        };
     }
 }

@@ -1,6 +1,8 @@
+using ContentGeneration.Domain;
+
 namespace ContentGeneration;
 
 public interface IChatter
 {
-    Task<string> GenerateContent(ContentRequestDto request);
+    Task<ContentResponseDto> GenerateContent(ContentRequestDto request);
 }

@@ -1,4 +1,5 @@
 using ContentGeneration;
+using ContentGeneration.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace OutLinkedServer.Controllers;
