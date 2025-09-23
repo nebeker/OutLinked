@@ -11,6 +11,10 @@ public class SystemPromptBuilder
     {
         var sb = new StringBuilder();
         sb.Append(CopyPaste);
+        if (request.Type == ContentType.Post)
+            sb.Append(Post);
+        if (request.Type == ContentType.Reply)
+            sb.Append(Reply);
         if (!IsNullOrWhiteSpace(request.AuthorIndustry) &&
             !IsNullOrWhiteSpace(request.AuthorTitle))
             sb.Append(AuthorInfo

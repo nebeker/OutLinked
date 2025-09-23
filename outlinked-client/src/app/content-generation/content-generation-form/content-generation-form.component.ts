@@ -6,11 +6,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
+import { MatSpinner } from '@angular/material/progress-spinner';
 import {
   IContentRequest,
   ContentType,
   IPlugOptions,
 } from '../models/content-request-model';
+import { IContentResponse } from '../models/content-response-model';
 import { UserInfoService } from '../../user-info/user-info-service';
 import { IUserInfo } from '../../user-info/models/user-info-model';
 import { ContentGenerationService } from '../content-generation-service';
@@ -25,6 +27,7 @@ import { ContentGenerationService } from '../content-generation-service';
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
+    MatSpinner,
     ReactiveFormsModule,
   ],
 })
@@ -63,13 +66,16 @@ export class ContentGenerationFormComponent {
 
   userInfo: IUserInfo | undefined;
 
-  generatedContent: string[] = [];
+  generatedContent: IContentResponse[] = [];
 
   ngOnInit() {
     var savedPlugOptions = this.userInfoService.getPromotionOptions();
     if (savedPlugOptions) this.plugOptions = savedPlugOptions;
     this.userInfo = this.userInfoService.getUserInfo();
   }
+
+  loading = false;
+
   onSubmit(): void {
     this.request = {
       Post: this.contentRequestForm.value.post!,
@@ -86,13 +92,18 @@ export class ContentGenerationFormComponent {
         : undefined,
     };
 
+    this.loading = true;
     console.log(this.request);
 
     var result = this.generationService
       .generateContent(this.request)
       .subscribe((data) => {
         this.generatedContent.push(data);
-        console.log(data);
+        this.loading = false;
       });
+  }
+
+  isReply(content: IContentResponse) {
+    return content.contentType == ContentType.Reply;
   }
 }

@@ -97,17 +97,18 @@
     </mat-card-actions>
   </mat-card>
 </form>
-
-@if (generatedContent.length>0) {
 <h2>Generated Content</h2>
-@for (item of generatedContent; track item) {
+@if (loading) {<mat-spinner aria-label="loading"></mat-spinner>} @if
+(generatedContent.length>0) { @for (item of generatedContent; track item) {
 
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Your reply</mat-card-title>
+    <mat-card-title>
+      @if(isReply(item)){ Your reply } @else { Your post }
+    </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    {{ item }}
+    {{ item.generatedContent }}
   </mat-card-content>
 </mat-card>
 } }

@@ -2,6 +2,6 @@ namespace ContentGeneration.Domain;
 
 public enum ContentType
 {
-    Repply = 1,
+    Reply = 1,
     Post  = 2,
 }

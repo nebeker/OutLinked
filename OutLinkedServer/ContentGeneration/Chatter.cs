@@ -42,6 +42,7 @@ public class Chatter : IChatter
         {
             ContentType = request.Type,
             GeneratedContent = content,
+            TimeGenerated = DateTime.UtcNow,
         };
     }
 }
