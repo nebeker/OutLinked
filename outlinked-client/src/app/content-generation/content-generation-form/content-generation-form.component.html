@@ -110,5 +110,14 @@
   <mat-card-content>
     {{ item.generatedContent }}
   </mat-card-content>
+  <mat-card-actions>
+    <button
+      matButton
+      type="button"
+      [cdkCopyToClipboard]="item.generatedContent"
+    >
+      Copy
+    </button>
+  </mat-card-actions>
 </mat-card>
 } }

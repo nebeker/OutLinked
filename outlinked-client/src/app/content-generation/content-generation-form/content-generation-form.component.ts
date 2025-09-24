@@ -7,6 +7,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { MatSpinner } from '@angular/material/progress-spinner';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+
 import {
   IContentRequest,
   ContentType,
@@ -29,6 +31,7 @@ import { ContentGenerationService } from '../content-generation-service';
     MatCardModule,
     MatSpinner,
     ReactiveFormsModule,
+    ClipboardModule,
   ],
 })
 export class ContentGenerationFormComponent {
