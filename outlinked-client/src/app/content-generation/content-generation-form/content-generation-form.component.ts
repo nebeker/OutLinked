@@ -4,10 +4,8 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
-import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { MatSpinner } from '@angular/material/progress-spinner';
-import { ClipboardModule } from '@angular/cdk/clipboard';
 
 import {
   IContentRequest,
@@ -18,7 +16,7 @@ import { IContentResponse } from '../models/content-response-model';
 import { UserInfoService } from '../../user-info/user-info-service';
 import { IUserInfo } from '../../user-info/models/user-info-model';
 import { ContentGenerationService } from '../content-generation-service';
-
+import { GeneratedContentComponent } from '../generated-content-compnent/generated-content-component';
 @Component({
   selector: 'app-content-generation-form',
   templateUrl: './content-generation-form.component.html',
@@ -27,11 +25,10 @@ import { ContentGenerationService } from '../content-generation-service';
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
-    MatRadioModule,
     MatCardModule,
     MatSpinner,
     ReactiveFormsModule,
-    ClipboardModule,
+    GeneratedContentComponent,
   ],
 })
 export class ContentGenerationFormComponent {
@@ -104,9 +101,5 @@ export class ContentGenerationFormComponent {
         this.generatedContent.push(data);
         this.loading = false;
       });
-  }
-
-  isReply(content: IContentResponse) {
-    return content.contentType == ContentType.Reply;
   }
 }

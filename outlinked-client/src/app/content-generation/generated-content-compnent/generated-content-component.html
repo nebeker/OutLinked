@@ -1,0 +1,25 @@
+@if(!content()) {
+<p>Nothing to show.</p>
+}
+<mat-card class="content-card">
+  @if (content()){
+  <mat-card-header>
+    <mat-card-title>
+      @if(isReply(content()!)){ Your reply } @else { Your post }
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    {{ content()!.generatedContent }}
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      matButton
+      type="button"
+      [cdkCopyToClipboard]="content()!.generatedContent"
+    >
+      Copy
+    </button>
+  </mat-card-actions>
+  <!-- @if(!$last) {<br />} -->
+  }
+</mat-card>

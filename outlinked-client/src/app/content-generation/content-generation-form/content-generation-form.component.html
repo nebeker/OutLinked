@@ -98,26 +98,8 @@
   </mat-card>
 </form>
 <h2>Generated Content</h2>
-@if (loading) {<mat-spinner aria-label="loading"></mat-spinner>} @if
-(generatedContent.length>0) { @for (item of generatedContent; track item) {
-
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>
-      @if(isReply(item)){ Your reply } @else { Your post }
-    </mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    {{ item.generatedContent }}
-  </mat-card-content>
-  <mat-card-actions>
-    <button
-      matButton
-      type="button"
-      [cdkCopyToClipboard]="item.generatedContent"
-    >
-      Copy
-    </button>
-  </mat-card-actions>
-</mat-card>
+@if (loading) {<mat-spinner diameter="50" aria-label="loading"></mat-spinner>}
+@if (generatedContent.length>0) { @for (item of generatedContent.reverse();
+track item.timeGenerated) {
+<app-generated-content-component [content]=item></app-generated-content-component>
 } }
