@@ -13,9 +13,13 @@ import { ContentType } from '../models/content-request-model';
   styleUrl: './generated-content-component.css',
 })
 export class GeneratedContentComponent {
-  content=input<IContentResponse | undefined>();
+  content = input<IContentResponse | undefined>();
 
   isReply(content: IContentResponse) {
     return content.contentType == ContentType.Reply;
   }
+
+  getDateTime(item: IContentResponse) {
+    return new Date(item.timeGenerated).toLocaleTimeString()
+    }
 }

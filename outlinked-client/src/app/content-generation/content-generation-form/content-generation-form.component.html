@@ -98,8 +98,11 @@
   </mat-card>
 </form>
 <h2>Generated Content</h2>
+<button (click)="clearContent()" matButton="elevated" color="primary" type="button">
+        Clear
+      </button>
 @if (loading) {<mat-spinner diameter="50" aria-label="loading"></mat-spinner>}
-@if (generatedContent.length>0) { @for (item of generatedContent.reverse();
+@if (generatedContent.length>0) { @for (item of getGeneratedContent();
 track item.timeGenerated) {
 <app-generated-content-component [content]=item></app-generated-content-component>
 } }

@@ -102,4 +102,14 @@ export class ContentGenerationFormComponent {
         this.loading = false;
       });
   }
+
+getGeneratedContent():IContentResponse[]
+{
+  return this.generatedContent.sort((a,b)=>(new Date(b.timeGenerated).getTime()-new Date(a.timeGenerated).getTime()))
+}
+
+  clearContent()
+  {
+    this.generatedContent = []
+  }
 }
