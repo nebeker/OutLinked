@@ -19,7 +19,7 @@ public static class PromptSegments
     public const string PlugContent =
         "At the end, make sure readers check your {type} called {title} available at {address}.";
 
-    public const string UserPromptSeparator = "The original post starts here:";
+    public const string UserPromptSeparator = "Don't deivde your response into sections. The original post starts here:";
 
     public class Placeholders
     {
