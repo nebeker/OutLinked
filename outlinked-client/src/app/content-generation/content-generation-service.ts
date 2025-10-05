@@ -7,7 +7,7 @@ import { IContentResponse } from './models/content-response-model';
   providedIn: 'root',
 })
 export class ContentGenerationService {
-  private webApiUrl = 'http://localhost:5098/ContentGeneration';
+  private webApiUrl = 'http://outlinkedserver:8080/ContentGeneration'; //'http://localhost:5098/ContentGeneration';
   constructor(private http: HttpClient) {}
 
   public generateContent(request: IContentRequest) {
