@@ -15,7 +15,7 @@ services:
     depends_on:
       - ollama
     ports:
-      - 8080
+      - 8888:8080
     # networks:
     #   - outlinked-network
   outlinkedclient:

@@ -12,7 +12,7 @@ services:
     build:
       context: .
     environment:
-      NODE_ENV: production
+      NODE_ENV: docker
     ports:
       - 8080:8080
 
@@ -48,4 +48,3 @@ services:
 # secrets:
 #   db-password:
 #     file: db/password.txt
-
