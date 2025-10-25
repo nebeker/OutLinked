@@ -2,7 +2,7 @@ services:
   ollama:
     image: ollama/ollama
     restart: unless-stopped
-    ports:
+    expose:
       - 11434
     container_name: ollama
     # networks:
@@ -26,7 +26,7 @@ services:
     depends_on:
       - outlinkedserver
     ports:
-      - 8080:8080
+      - 80:8080
     environment:
       NODE_ENV: docker
     # networks:

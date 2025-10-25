@@ -1,3 +1,3 @@
 export const environment = {
-    serverUrl: 'http://outlinkedserver:8080/ContentGeneration',
+  serverUrl: 'http://localhost:8888/ContentGeneration',
 };

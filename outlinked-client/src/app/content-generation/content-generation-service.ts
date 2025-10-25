@@ -13,6 +13,8 @@ export class ContentGenerationService {
 
   public generateContent(request: IContentRequest) {
     console.log(this.webApiUrl)
-    return this.http.post<IContentResponse>(this.webApiUrl, request);
+    return this.http.post<IContentResponse>(this.webApiUrl, request, {
+      mode: 'cors',
+    });
   }
 }
