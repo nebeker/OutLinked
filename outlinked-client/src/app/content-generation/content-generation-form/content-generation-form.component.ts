@@ -100,9 +100,18 @@ export class ContentGenerationFormComponent {
       .generateContent(this.request)
       .subscribe({
         next: data => {
-        this.generatedContent.push(data);
-        this.loading = false;
-        this.error = false;
+          if (data)
+          {
+            this.generatedContent.push(data);
+            this.loading = false;
+            this.error = false;
+          }
+          else
+          {
+            console.log("No data returned");
+            this.loading = false;
+            this.error = true;
+          }
       },
       error: err => {
         console.log(err);
