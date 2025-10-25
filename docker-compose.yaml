@@ -1,11 +1,23 @@
 services:
+  ollama:
+    image: ollama/ollama
+    restart: unless-stopped
+    expose:
+      - 11434
+    container_name: ollama
+    # networks:
+    #   - outlinked-network
   outlinkedserver:
     image: outlinkedserver
     build:
       context: OutLinkedServer
       dockerfile: OutLinkedServer/Dockerfile
+    depends_on:
+      - ollama
     ports:
       - 8888:8080
+    # networks:
+    #   - outlinked-network
   outlinkedclient:
     image: outlinkedclient
     build:
@@ -17,3 +29,8 @@ services:
       - 80:8080
     environment:
       NODE_ENV: docker
+    # networks:
+    #   - outlinked-network
+# networks:
+#   outlinked-network:
+#     external: false
