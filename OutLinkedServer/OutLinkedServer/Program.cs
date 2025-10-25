@@ -9,6 +9,10 @@ public static class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        
+        builder.Services.AddLogging(configure => configure
+            .AddConsole()
+        );
 
         var chatterConfig = builder.Configuration.GetSection(ChatterConfigKey);
 
@@ -23,12 +27,13 @@ public static class Program
         if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();
-            app.UseCors(corsPolicyBuilder => corsPolicyBuilder
-                .AllowAnyHeader()
-                .AllowAnyMethod()
-                .AllowAnyOrigin()
-            );
         }
+
+        app.UseCors(corsPolicyBuilder => corsPolicyBuilder
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowAnyOrigin()
+        );
 
         //app.UseHttpsRedirection();
 
