@@ -75,6 +75,7 @@ export class ContentGenerationFormComponent {
   }
 
   loading = false;
+  error = false;
 
   onSubmit(): void {
     this.request = {
@@ -97,10 +98,18 @@ export class ContentGenerationFormComponent {
 
     var result = this.generationService
       .generateContent(this.request)
-      .subscribe((data) => {
+      .subscribe({
+        next: data => {
         this.generatedContent.push(data);
         this.loading = false;
-      });
+        this.error = false;
+      },
+      error: err => {
+        console.log(err);
+        this.loading = false;
+        this.error = true;
+      }
+  });
   }
 
 getGeneratedContent():IContentResponse[]
@@ -110,6 +119,7 @@ getGeneratedContent():IContentResponse[]
 
   clearContent()
   {
+    this.error = false;
     this.generatedContent = []
   }
 }
