@@ -13,6 +13,8 @@ A toy project using Angular, ASP.NET and Ollama.
 
 ## Usage
 
+![app screenshot in browser showing a text post, plug content options for blog.nebeker.tech and a generated reply](doc/usage-example.png)
+
 1. Find a social media post you'd like to write an insightful reply or quote for
 2. Paste into the Content Generation form
 3. Add any plug options to promote your own content
