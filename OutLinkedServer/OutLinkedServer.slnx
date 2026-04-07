@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="compose.yaml" />
+  </Folder>
+  <Project Path="ContentGeneration/ContentGeneration.csproj" />
+  <Project Path="OutLinkedServer/OutLinkedServer.csproj" />
+</Solution>
