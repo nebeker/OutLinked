@@ -16,7 +16,7 @@ public static class ChatterServiceCollectionExtensions
     {
         var configUri = chatterConfiguration[UriConfigKey];
         var configModel = chatterConfiguration[ModelConfigKey];
-        services.AddSingleton<IChatClient>(new OllamaApiClient(new Uri(configUri ?? DefaultUri),
+        services.AddSingleton<IOllamaApiClient>(new OllamaApiClient(new Uri(configUri ?? DefaultUri),
             configModel?? DefaultModel));
         services.AddScoped<IChatter, Chatter>();
 

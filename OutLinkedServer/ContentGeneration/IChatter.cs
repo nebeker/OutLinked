@@ -4,5 +4,7 @@ namespace ContentGeneration;
 
 public interface IChatter
 {
-    Task<ContentResponseDto> GenerateContent(ContentRequestDto request);
+    Task<ContentResponseDto?> GenerateContent(ContentRequestDto request);
+
+    //Task<List<string>> GetModels();
 }
