@@ -6,5 +6,5 @@ public interface IChatter
 {
     Task<ContentResponseDto?> GenerateContent(ContentRequestDto request);
 
-    //Task<List<string>> GetModels();
+    Task<List<string>> GetAvailableModels();
 }

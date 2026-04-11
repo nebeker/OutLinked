@@ -19,9 +19,10 @@ public class ContentGenerationController : ControllerBase
     }
 
     [HttpGet(Name = "GetModel")]
-    public string Get()
+    public async Task<ObjectResult> Get()
     {
-        return "model";
+        var result = await _chatter.GetAvailableModels();
+        return new OkObjectResult(result);
     }
     
     [HttpPost(Name = "GenerateFromText")]

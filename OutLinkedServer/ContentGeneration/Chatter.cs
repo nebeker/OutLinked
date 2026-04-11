@@ -19,18 +19,26 @@ public class Chatter : IChatter
         logger.LogInformation("Chatter initialized");
     }
 
-    public async Task<string> AnswerChatAsync(string prompt, string systemPrompt)
+    public async Task<string> AnswerChatAsync(string prompt, string systemPrompt, string? model)
     {
         logger.LogDebug("Generating response for prompt: {prompt}", prompt.Substring(0, Math.Min(prompt.Length, 50)));
 
-        var request = new GenerateRequest
+        GenerateRequest request = new();
+        if (model != null)
         {
-            //Model = null,
-            Prompt = prompt,
-            System = systemPrompt,
-            Stream = true,
-            Raw = false
-        };
+            request.Model = model;
+            request.Prompt = prompt;
+            request.System = systemPrompt;
+            request.Stream = true;
+            request.Raw = false;
+        }
+        else
+        {
+            request.Prompt = prompt;
+            request.System = systemPrompt;
+            request.Stream = true;
+            request.Raw = false;
+        }
 
         var assistantResponse = "";
         
@@ -45,9 +53,10 @@ public class Chatter : IChatter
         logger.LogDebug("Generating content for request: {request}", request.ToString());
         var prompt = request.Post;
         var systemPrompt = _systemPromptBuilder.BuildSystemPrompt(request);
+        var model = request.Model;
         try
         {
-            var content = await AnswerChatAsync(prompt, systemPrompt);
+            var content = await AnswerChatAsync(prompt, systemPrompt, model);
             return new ContentResponseDto
             {
                 ContentType = request.Type,
@@ -60,5 +69,12 @@ public class Chatter : IChatter
             logger.LogError(e, "Error generating content");
             return null;
         }
+    }
+
+    public async Task<List<string>> GetAvailableModels()
+    {
+        var localModels = await chatClient.ListLocalModelsAsync();
+        
+        return localModels.Select(localModel => localModel.Name).ToList();
     }
 }
