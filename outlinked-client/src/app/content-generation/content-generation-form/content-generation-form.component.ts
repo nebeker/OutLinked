@@ -11,6 +11,7 @@ import {
   IContentRequest,
   ContentType,
   IPlugOptions,
+  IModel,
 } from '../models/content-request-model';
 import { IContentResponse } from '../models/content-response-model';
 import { UserInfoService } from '../../user-info/user-info-service';
@@ -38,6 +39,7 @@ export class ContentGenerationFormComponent {
   contentRequestForm = this.fb.group({
     post: ['', Validators.required],
     contentType: ContentType.Reply,
+    model: [''],
     plugType: ['', Validators.required],
     plugTitle: ['', Validators.required],
     plugUrl: ['', Validators.required],
@@ -48,6 +50,9 @@ export class ContentGenerationFormComponent {
     { name: ContentType[ContentType.Post], value: ContentType.Post },
     { name: ContentType[ContentType.Reply], value: ContentType.Reply },
   ];
+  models: IModel[] = [
+    { name: "Default", value: null },
+  ];
 
   request: IContentRequest = {
     Post: '',
@@ -56,6 +61,7 @@ export class ContentGenerationFormComponent {
     AuthorTitle: '',
     PlugEnabled: false,
     PlugOptions: undefined,
+    Model: null,
   };
 
   plugOptions: IPlugOptions = {
@@ -72,6 +78,25 @@ export class ContentGenerationFormComponent {
     var savedPlugOptions = this.userInfoService.getPromotionOptions();
     if (savedPlugOptions) this.plugOptions = savedPlugOptions;
     this.userInfo = this.userInfoService.getUserInfo();
+    this.generationService.getModels().subscribe({
+      next: (data) => {
+        if (data) {
+          data.forEach(element => {
+            this.models.push({
+              name: element,
+              value: element,
+            });
+          });
+        } else {
+          console.log('No data returned');
+          this.error = true;
+        }
+      },
+      error: (err) => {
+        console.log(err);
+        this.error = true;
+      },
+    });
   }
 
   loading = false;
@@ -83,6 +108,7 @@ export class ContentGenerationFormComponent {
       Type: this.contentRequestForm.value.contentType!,
       AuthorIndustry: this.userInfo?.AuthorIndustry ?? '',
       AuthorTitle: this.userInfo?.AuthorTitle ?? '',
+      Model: this.contentRequestForm.value.model ?? null,
       PlugEnabled: this.plugEnabled,
       PlugOptions: this.plugEnabled
         ? {
@@ -99,36 +125,35 @@ export class ContentGenerationFormComponent {
     var result = this.generationService
       .generateContent(this.request)
       .subscribe({
-        next: data => {
-          if (data)
-          {
+        next: (data) => {
+          if (data) {
             this.generatedContent.push(data);
             this.loading = false;
             this.error = false;
-          }
-          else
-          {
-            console.log("No data returned");
+          } else {
+            console.log('No data returned');
             this.loading = false;
             this.error = true;
           }
-      },
-      error: err => {
-        console.log(err);
-        this.loading = false;
-        this.error = true;
-      }
-  });
+        },
+        error: (err) => {
+          console.log(err);
+          this.loading = false;
+          this.error = true;
+        },
+      });
   }
 
-getGeneratedContent():IContentResponse[]
-{
-  return this.generatedContent.sort((a,b)=>(new Date(b.timeGenerated).getTime()-new Date(a.timeGenerated).getTime()))
-}
+  getGeneratedContent(): IContentResponse[] {
+    return this.generatedContent.sort(
+      (a, b) =>
+        new Date(b.timeGenerated).getTime() -
+        new Date(a.timeGenerated).getTime(),
+    );
+  }
 
-  clearContent()
-  {
+  clearContent() {
     this.error = false;
-    this.generatedContent = []
+    this.generatedContent = [];
   }
 }

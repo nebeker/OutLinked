@@ -12,9 +12,17 @@ export class ContentGenerationService {
   constructor(private http: HttpClient) {}
 
   public generateContent(request: IContentRequest) {
-    console.log(this.webApiUrl)
+    console.log("Post/ " + this.webApiUrl)
     return this.http.post<IContentResponse>(this.webApiUrl, request, {
       mode: 'cors',
+    });
+  }
+
+  public getModels()
+  {
+    console.log("Get/ " + this.webApiUrl)
+    return this.http.get<string[]>(this.webApiUrl, {
+            mode: 'cors',
     });
   }
 }

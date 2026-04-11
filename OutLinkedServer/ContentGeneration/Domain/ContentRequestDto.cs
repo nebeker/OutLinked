@@ -8,4 +8,5 @@ public record ContentRequestDto
     public string? AuthorTitle { get; set; }
     public bool PlugEnabled {get; set;}
     public PlugOptionsDto? PlugOptions {get; set;}
+    public string? Model {get; set;}
 }
