@@ -40,6 +40,22 @@
             }
           </mat-form-field>
         </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Model</mat-label>
+            <mat-select
+              placeholder=""
+              formControlName="model"
+              [(ngModel)]="request.Model"
+            >
+              @for (model of models; track model) {
+              <mat-option [value]="model.value">{{
+                model.name
+              }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
       </div>
       <div class="row">
         <div class="col">
