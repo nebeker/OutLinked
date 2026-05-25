@@ -1,3 +1,4 @@
+using ContentGeneration.Adapters;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,17 +8,11 @@ namespace ContentGeneration;
 
 public static class ChatterServiceCollectionExtensions
 {
-    private const string UriConfigKey = "Uri";
-    private const string ModelConfigKey = "Model";
-    private const string DefaultUri = "http://localhost:11434/";
-    private const string DefaultModel = "llama3.2:latest";
-
-    public static IServiceCollection AddChatter(this IServiceCollection services , IConfiguration chatterConfiguration)
+    public static IServiceCollection AddChatter(this IServiceCollection services, OllamaOptions chatterConfiguration)
     {
-        var configUri = chatterConfiguration[UriConfigKey];
-        var configModel = chatterConfiguration[ModelConfigKey];
-        services.AddSingleton<IOllamaApiClient>(new OllamaApiClient(new Uri(configUri ?? DefaultUri),
-            configModel?? DefaultModel));
+        var configUri = chatterConfiguration.Url;
+        var configModel = chatterConfiguration.Model;
+        services.AddSingleton<IOllamaApiClient>(new OllamaApiClient(new Uri(configUri), configModel));
         services.AddScoped<IChatter, Chatter>();
 
         return services;

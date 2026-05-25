@@ -1,4 +1,5 @@
 using ContentGeneration;
+using ContentGeneration.Adapters;
 
 namespace OutLinkedServer;
 
@@ -14,8 +15,10 @@ public static class Program
             .AddConsole()
         );
 
-        var chatterConfig = builder.Configuration.GetSection(ChatterConfigKey);
-
+        OllamaOptions chatterConfig = new();
+        
+        builder.Configuration.GetSection(nameof(OllamaOptions)).Bind(chatterConfig);
+        
         builder.Services.AddChatter(chatterConfig);
 
         builder.Services.AddControllers();
@@ -30,8 +33,8 @@ public static class Program
         }
 
         app.UseCors(corsPolicyBuilder => corsPolicyBuilder
+            .WithMethods("GET", "POST")
             .AllowAnyHeader()
-            .AllowAnyMethod()
             .AllowAnyOrigin()
         );
 
