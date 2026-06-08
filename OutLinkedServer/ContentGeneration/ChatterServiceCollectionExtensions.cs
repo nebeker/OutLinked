@@ -10,7 +10,7 @@ public static class ChatterServiceCollectionExtensions
 {
     public static IServiceCollection AddChatter(this IServiceCollection services, OllamaOptions chatterConfiguration)
     {
-        var configUri = chatterConfiguration.Url;
+        var configUri = chatterConfiguration.Uri;
         var configModel = chatterConfiguration.Model;
         services.AddSingleton<IOllamaApiClient>(new OllamaApiClient(new Uri(configUri), configModel));
         services.AddScoped<IChatter, Chatter>();
